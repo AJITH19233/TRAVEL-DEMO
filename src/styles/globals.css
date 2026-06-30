@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom CSS Variables ── */
+:root {
+  --ocean: #0B4F6C;
+  --sky: #3A86FF;
+  --emerald: #06D6A0;
+  --orange: #FF6B35;
+  --golden: #FFD166;
+  --dark: #0D1B2A;
+  --white: #ffffff;
+  --soft-gray: #F4F6F8;
+}
+
+/* ── Base Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ocean);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sky);
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--sky);
+  color: white;
+}
+
+/* ── Glassmorphism ── */
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  .glass-dark {
+    @apply bg-dark-900/40 backdrop-blur-md border border-white/10;
+  }
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-lg border border-white/40 shadow-glass;
+  }
+
+  /* ── Gradient Text ── */
+  .gradient-text-ocean {
+    @apply bg-gradient-to-r from-ocean-500 to-sky-500 bg-clip-text text-transparent;
+  }
+  .gradient-text-sunset {
+    @apply bg-gradient-to-r from-coral-500 to-amber-500 bg-clip-text text-transparent;
+  }
+  .gradient-text-emerald {
+    @apply bg-gradient-to-r from-emerald-500 to-sky-500 bg-clip-text text-transparent;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-ocean-500 to-sky-500
+           text-white font-heading font-semibold rounded-full overflow-hidden
+           transition-all duration-300 hover:shadow-glow-blue hover:scale-105 active:scale-95;
+  }
+  .btn-secondary {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 border-2 border-white text-white
+           font-heading font-semibold rounded-full overflow-hidden
+           transition-all duration-300 hover:bg-white hover:text-ocean-500 hover:scale-105 active:scale-95;
+  }
+  .btn-outline {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 border-2 border-ocean-500 text-ocean-500
+           font-heading font-semibold rounded-full overflow-hidden
+           transition-all duration-300 hover:bg-ocean-500 hover:text-white hover:scale-105 active:scale-95;
+  }
+  .btn-golden {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-coral-500 to-amber-500
+           text-white font-heading font-semibold rounded-full overflow-hidden
+           transition-all duration-300 hover:shadow-glow-orange hover:scale-105 active:scale-95;
+  }
+
+  /* ── Section Container ── */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
+
+  /* ── Section Badge ── */
+  .section-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-accent font-semibold
+           bg-ocean-500/10 text-ocean-500 border border-ocean-500/20;
+  }
+
+  /* ── Card ── */
+  .premium-card {
+    @apply bg-white rounded-3xl overflow-hidden shadow-card transition-all duration-500
+           hover:shadow-card-hover hover:-translate-y-2;
+  }
+
+  /* ── Image Overlay ── */
+  .overlay-gradient {
+    @apply absolute inset-0 bg-gradient-to-t from-dark-900/80 via-dark-900/20 to-transparent;
+  }
+
+  /* ── Swiper Custom ── */
+  .swiper-pagination-bullet {
+    @apply bg-white/50 opacity-100 !important;
+  }
+  .swiper-pagination-bullet-active {
+    @apply bg-white scale-125 !important;
+  }
+}
+
+/* ── Cursor ── */
+.custom-cursor {
+  width: 10px;
+  height: 10px;
+  background: var(--sky);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+.cursor-follower {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--sky);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform;
+  transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
+  opacity: 0.45;
+}
+.cursor-follower.hovered {
+  width: 52px;
+  height: 52px;
+  opacity: 0.25;
+  border-color: var(--emerald);
+}
+
+/* ── Reduced motion support ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .custom-cursor, .cursor-follower { display: none !important; }
+}
+
+/* ── Scroll Progress Bar ── */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--sky), var(--emerald));
+  z-index: 10000;
+  transform-origin: left;
+}
+
+/* ── Loading Screen ── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Hero Video ── */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ── Floating particles ── */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── Masonry Grid ── */
+.masonry-grid {
+  columns: 3;
+  column-gap: 1rem;
+}
+@media (max-width: 768px) {
+  .masonry-grid { columns: 2; }
+}
+@media (max-width: 480px) {
+  .masonry-grid { columns: 1; }
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* ── Swiper overrides ── */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important;
+  background: rgba(11,79,108,0.7) !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  backdrop-filter: blur(10px);
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px !important;
+}
+
+/* ── Animated underline ── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--sky), var(--emerald));
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ── Timeline ── */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--sky), var(--emerald));
+  transform: translateX(-50%);
+}
+
+/* ── FAQ Accordion ── */
+.faq-item {
+  border-bottom: 1px solid rgba(11,79,108,0.1);
+}
+
+/* ── Counter animation ── */
+.counter-value {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Typing cursor ── */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--golden);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Responsive utilities ── */
+@media (max-width: 640px) {
+  .section-padding { @apply py-14; }
+}
+
+/* ── Performance: GPU compositing ── */
+.premium-card,
+.swiper-slide,
+[data-framer-motion],
+.glass {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ── Image optimization ── */
+img {
+  image-rendering: auto;
+  display: block;
+}
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* ── Smooth font rendering on dark bg ── */
+.text-white,
+[class*="text-white"] {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Contain layout sections ── */
+section {
+  contain: layout style;
+}
+/* But hero needs overflow visible for parallax ── */
+#hero {
+  contain: none;
+}
