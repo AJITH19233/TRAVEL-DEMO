@@ -163,7 +163,7 @@ export default function Hero() {
 
       {/* ── Main content ── */}
       <motion.div
-        className="relative z-20 text-center text-white px-4 max-w-5xl mx-auto w-full"
+        className="relative z-20 text-center text-white px-4 max-w-5xl mx-auto w-full pt-24 md:pt-0"
         style={{ opacity }}
       >
         {/* Live badge */}
