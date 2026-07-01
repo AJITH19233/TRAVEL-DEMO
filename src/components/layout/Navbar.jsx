@@ -49,11 +49,11 @@ export default function Navbar() {
               >
                 <FaCompass className="text-white text-xl" />
               </motion.div>
-              <div>
-                <span className="font-heading font-bold text-xl text-white tracking-wide">
+              <div className="flex flex-col">
+                <span className="font-heading font-bold text-xl text-white tracking-wide whitespace-nowrap">
                   Wander<span className="text-amber-500">lux</span>
                 </span>
-                <p className="text-[10px] text-white/50 font-accent tracking-widest uppercase -mt-0.5">
+                <p className="text-[10px] text-white/50 font-accent tracking-widest uppercase -mt-0.5 whitespace-nowrap">
                   Premium Travel
                 </p>
               </div>
