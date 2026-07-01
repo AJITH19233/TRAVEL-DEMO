@@ -76,7 +76,7 @@ export default function Hero() {
     if (!vid) return
     vid.muted = true
     vid.defaultMuted = true
-    
+
     const playVideo = () => {
       vid.play().catch((err) => {
         console.warn('Autoplay prevented:', err)
@@ -163,7 +163,7 @@ export default function Hero() {
 
       {/* ── Main content ── */}
       <motion.div
-        className="relative z-20 text-center text-white px-4 max-w-5xl mx-auto w-full pt-24 md:pt-0"
+        className="relative z-20 text-center text-white px-4 max-w-5xl mx-auto w-full"
         style={{ opacity }}
       >
         {/* Live badge */}
@@ -173,8 +173,7 @@ export default function Hero() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-accent mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          Premium Travel Experiences Since 2009
+          
         </motion.div>
 
         {/* Heading with GSAP stagger */}
