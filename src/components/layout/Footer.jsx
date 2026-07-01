@@ -60,11 +60,11 @@ export default function Footer() {
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500 to-emerald-500 flex items-center justify-center">
                 <FaCompass className="text-white text-xl" />
               </div>
-              <div className="flex flex-col">
-                <span className="font-heading font-bold text-2xl text-white whitespace-nowrap">
+              <div>
+                <span className="font-heading font-bold text-2xl text-white">
                   Wander<span className="text-amber-500">lux</span>
                 </span>
-                <p className="text-[10px] text-white/40 font-accent tracking-widest uppercase whitespace-nowrap">
+                <p className="text-[10px] text-white/40 font-accent tracking-widest uppercase">
                   Premium Travel
                 </p>
               </div>
